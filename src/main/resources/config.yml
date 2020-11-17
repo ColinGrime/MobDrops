@@ -1,0 +1,40 @@
+# -= Mob Drops =-
+# Created by Scill
+#
+# zombie:
+#   rotten_flesh:
+#   - 0 50
+#   - 1 30
+#   - 2 20
+#   coal:
+#   - 1 100
+#   - 2 100
+#   carrot:
+#   - 1 5
+#
+# ^ Each drop is independent of the other, and
+#     drop chances don't have to add up to 100%,
+#     so the above has a 50% for 0 rotten flesh,
+#     a 50% for 2 coal, and a 100% for 1 carrot.
+#
+# Format of loot is "[amount] [percent]"
+#
+# Mob names: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/entity/EntityType.html
+# Item names: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+#
+zombie:
+  rotten_flesh:
+  - 0 50
+  - 1 30
+  - 2 20
+  coal:
+  - 1 100
+  - 2 100
+  carrot:
+  - 1 5
+    
+skeleton:
+  bone:
+  - 1 100
+  xp:
+  - 10 100
