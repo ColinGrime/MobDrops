@@ -21,21 +21,25 @@ public class DropsListener implements Listener {
 
 	@EventHandler
 	public void onDeath(final EntityDeathEvent event) {
-		if (plugin.getMobDrops().containsKey(event.getEntity().getType()))
+		if (plugin.getMobDrops().containsKey(event.getEntity().getType())) {
+			event.getDrops().clear();
 			dropLoot(event);
+		}
 	}
 
+	/**
+	 * Drops items / XP of the specified mob.
+	 * @param event event for entity deaths
+	 */
 	private void dropLoot(final EntityDeathEvent event) {
-		event.getDrops().clear();
 		final Location location = event.getEntity().getLocation();
-
-		for (Map.Entry<String, DropCollection<Integer>> entry : plugin.getMobDrops().get(event.getEntity().getType()).entrySet()) {
-			final int amount = entry.getValue().next();
-			if (amount == 0);
-			else if (entry.getKey().equals("XP"))
-				event.setDroppedExp(amount);
-			else
-				location.getWorld().dropItem(location, new ItemStack(Material.getMaterial(entry.getKey()), amount));
+		// Iterates through the potential drops of the mob.
+		for (Map.Entry<String, DropCollection> mobDrops : plugin.getMobDrops().get(event.getEntity().getType()).entrySet()) {
+			final int dropAmount = mobDrops.getValue().getRandomDrop();
+			if (mobDrops.getKey().equals("XP"))
+				event.setDroppedExp(dropAmount);
+			else if (dropAmount != 0)
+				location.getWorld().dropItem(location, new ItemStack(Material.getMaterial(mobDrops.getKey()), dropAmount));
 		}
 	}
 }

@@ -7,7 +7,7 @@
     <groupId>me.scill</groupId>
     <artifactId>mobdrops</artifactId>
     <name>MobDrops</name>
-    <version>1.0.0</version>
+    <version>1.1.1</version>
 
     <properties>
         <main.class>me.scill.mobdrops.MobDrops</main.class>
@@ -22,9 +22,26 @@
             <version>1.8.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.16</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>

@@ -10,7 +10,7 @@ import me.scill.mobdrops.listeners.DropsListener;
 
 public class MobDrops extends JavaPlugin {
 	
-	private ItemLoot itemLoot;
+	private ItemDrops itemDrops;
 
 	public void onEnable() {
 		saveDefaultConfig();
@@ -21,20 +21,24 @@ public class MobDrops extends JavaPlugin {
 
 		// Commands
         getCommand("mobdrops").setExecutor(new ReloadCommand(this));
-
-    	getServer().getConsoleSender().sendMessage("MobDrops has been enabled!");
 	}
 
 	public void onDisable() {
-		itemLoot = null;
-    	getServer().getConsoleSender().sendMessage("MobDrops has been disabled!!");
+		itemDrops = null;
 	}
-	
+
+	/**
+	 * Reloads the Mob Drops configuration with new drops.
+	 */
 	public void reloadMobDrops() {
-		itemLoot = new ItemLoot(this);
+		itemDrops = new ItemDrops(getConfig());
 	}
-	
-	public Map<EntityType, Map<String, DropCollection<Integer>>> getMobDrops() {
-		return itemLoot.getItemLoot();
+
+	/**
+	 * Gets a Map of the current mob drops on the server.
+	 * @return current mob drops
+	 */
+	public Map<EntityType, Map<String, DropCollection>> getMobDrops() {
+		return itemDrops.getAllMobDrops();
 	}
 }

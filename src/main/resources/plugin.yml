@@ -1,6 +1,6 @@
-name: MobDrops
-main: me.scill.mobdrops.MobDrops
-version: 1.1
+name: ${project.name}
+main: ${main.class}
+version: ${project.version}
 author: Scill
 commands:
    mobdrops:
